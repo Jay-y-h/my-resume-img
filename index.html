@@ -1,170 +1,753 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my resume data</title>
+    <title>项目作品集 | 软件开发项目</title>
+
     <style>
-        body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+      :root {
+        --bg: #f6f7f9;
+        --card: #ffffff;
+        --text: #1f2937;
+        --text-secondary: #667085;
+        --text-light: #98a2b3;
+        --border: #e5e7eb;
+        --primary: #2563eb;
+        --primary-light: #eff6ff;
+        --shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+        --radius: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family:
+          "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.7;
+      }
+
+      /* =========================
+         Header
+      ========================= */
+
+      .hero {
+        padding: 72px 20px 60px;
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(37, 99, 235, 0.08),
+            transparent 30%
+          ),
+          linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .hero-label {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 12px;
+        margin-bottom: 18px;
+        border-radius: 999px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .hero h1 {
+        margin: 0 0 12px;
+        font-size: clamp(32px, 5vw, 48px);
+        line-height: 1.2;
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        max-width: 760px;
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 16px;
+      }
+
+      /* =========================
+         Navigation
+      ========================= */
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 12px 20px;
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+      }
+
+      .nav a {
+        flex-shrink: 0;
+        padding: 7px 13px;
+        border-radius: 8px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 13px;
+        transition: 0.2s;
+      }
+
+      .nav a:hover {
+        color: var(--primary);
+        background: var(--primary-light);
+      }
+
+      /* =========================
+         Main
+      ========================= */
+
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 48px 20px 80px;
+      }
+
+      .section-header {
+        margin-bottom: 26px;
+      }
+
+      .section-header h2 {
+        margin: 0 0 6px;
+        font-size: 26px;
+      }
+
+      .section-header p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 14px;
+      }
+
+      /* =========================
+         Project Card
+      ========================= */
+
+      .project {
+        margin-bottom: 28px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .project:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 40px rgba(15, 23, 42, 0.09);
+      }
+
+      .project-images {
+        padding: 20px;
+        background: #f8fafc;
+      }
+
+      .project-images img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        object-fit: contain;
+        background: #fff;
+      }
+
+      .single-image img {
+        max-height: 620px;
+        object-fit: contain;
+      }
+
+      .project-content {
+        padding: 24px 26px 26px;
+      }
+
+      .project-title {
+        margin: 0 0 10px;
+        font-size: 22px;
+        line-height: 1.4;
+      }
+
+      .project-description {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 14px;
+      }
+
+      .project-description + .project-description {
+        margin-top: 8px;
+      }
+
+      /* =========================
+         Tags
+      ========================= */
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 16px;
+      }
+
+      .tag {
+        padding: 4px 9px;
+        border: 1px solid #dbe4f0;
+        border-radius: 6px;
+        background: #f8fafc;
+        color: #475467;
+        font-size: 12px;
+      }
+
+      /* =========================
+         Multi Images
+      ========================= */
+
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .image-grid img {
+        height: 320px;
+        object-fit: contain;
+        border: 1px solid var(--border);
+      }
+
+      .image-grid.small img {
+        height: 260px;
+      }
+
+      /* =========================
+         X-Ray
+      ========================= */
+
+      .xray-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .xray-grid img {
+        height: 220px;
+        object-fit: contain;
+        border: 1px solid var(--border);
+      }
+
+      /* =========================
+         Highlight
+      ========================= */
+
+      .highlight {
+        margin-top: 18px;
+        padding: 14px 16px;
+        border-left: 3px solid var(--primary);
+        background: #f8fafc;
+        color: #475467;
+        font-size: 13px;
+      }
+
+      /* =========================
+         Footer
+      ========================= */
+
+      footer {
+        padding: 30px 20px 50px;
+        text-align: center;
+        color: var(--text-light);
+        font-size: 13px;
+      }
+
+      /* =========================
+         Responsive
+      ========================= */
+
+      @media (max-width: 800px) {
+        .hero {
+          padding: 48px 20px 42px;
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
+        main {
+          padding-top: 32px;
         }
 
-        .image-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 30px;
+        .image-grid {
+          grid-template-columns: 1fr;
         }
 
-        .image-wrapper {
-            text-align: center;
-            margin-bottom: 15px;
+        .xray-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
+        .image-grid img {
+          height: auto;
+          max-height: 420px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .hero h1 {
+          font-size: 32px;
         }
 
-        .image-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 10px 0;
-            color: #444;
+        .project-content {
+          padding: 20px;
         }
 
-        .image-description {
-            color: #666;
-            line-height: 1.6;
+        .project-images {
+          padding: 12px;
         }
+
+        .xray-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .xray-grid img {
+          height: auto;
+          max-height: 420px;
+        }
+
+        .project-title {
+          font-size: 20px;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <h1>一些近期项目</h1>
+  <body>
+    <!-- =========================
+         Hero
+    ========================== -->
 
-    <!-- 第一张图片 -->
-    <div class="image-container">
-        <div class="image-wrapper">
-            <img src="./resume-images/IMG_5087.JPG" alt="图片1">
-        </div>
-        <h2 class="image-title">车载软件</h2>
-        <p class="image-description">
-            运行在linux平台下，包括多路图像显示、系统控制、状态显示、目标检测等<br>
-            使用Qt/qml编写
-        </p>
-    </div>
+    <header class="hero">
+      <div class="hero-inner">
+        <h1>近期项目</h1>
 
-    <!-- 第二张图片 -->
-    <div class="image-container">
-        <div class="image-wrapper">
-            <img src="./resume-images/243afe8afc88cf244ad357e0d24487c6.PNG" alt="图片2">
-        </div>
-        <h2 class="image-title">仿macUI</h2>
-        <p class="image-description">
-            在windows下运行的仿macOS界面，是为公司后期其他项目准备的工作。<br>
-            使用qt/qml编写<br>
+        <p>
+          软件开发相关项目展示，涵盖 Qt/QML、Linux、Windows、 Web
+          前后端、工业设备通信、音视频、设备管理等方向。
         </p>
-    </div>
+      </div>
+    </header>
 
-    <!-- 第三张图片 -->
-    <div class="image-container">
-        <div class="image-wrapper">
-            <img src="./resume-images/5d20eabdb46331e628e5d72bcb078fc3.PNG" alt="图片3">
-        </div>
-        <h2 class="image-title">用于pcs测试的ems上位机</h2>
-        <p class="image-description">
-            使用modbus通信，模拟ems系统，测试公司pcs产品数据通信等相关<br>
-            使用qt/qml编写<br>
-        </p>
-    </div>
-    <!-- 第三张图片 -->
-    <div class="image-container">
-        <div class="image-wrapper">
-            <img src="./resume-images/aba0e6803b25f8e8a2570cd5fa09aa99 2.PNG" alt="图片4">
-        </div>
-        <h2 class="image-title">pcs Sys测试</h2>
-        <p class="image-description">
-            pcs管理系统界面，预研系统管理软件，包括不同界面主题颜色、动画及过渡效果<br>
-            使用qt/qml编写<br>
-        </p>
-    </div>
-    <!-- 第三张图片 -->
-    <div class="image-container">
-        <div class="image-wrapper">
-            <img src="./resume-images/e9ca34f519a020c73e7e7f0e096db45f.PNG" alt="图片5">
-        </div>
-        <h2 class="image-title">pcs测试软件</h2>
-        <p class="image-description">
-            用于pcs稳定性测试，包括多路电压电流折线图状态显示，pcs测试流程控制、状态显示，重要参数计算等<br>
-            使用qt/qml编写<br>
-        </p>
-    </div>
-    <!-- 第三张图片 -->
-    <div class="image-container">
-        <div class="image-wrapper">
-            <img src="./resume-images/ppp.png" alt="图片6">
-        </div>
-        <h2 class="image-title">pcs出厂测试</h2>
-        <p class="image-description">
-            用于pcs出厂测试，生成测试报告<br>
-            截图不是最终版本<br>
-            使用qt/qml/html编写
-        </p>
-    </div>
-    <!-- 第三张图片 -->
-    <div class="image-container">
-        <div class="image-wrapper">
-            <img src="./resume-images/Group 1.png" alt="图片7">
-        </div>
-        <h2 class="image-title">pcs产品信息小程序</h2>
-        <p class="image-description">
-            用于pcs产品信息查询追溯，二维码生成等<br>
-        </p>
-    </div>
-    <div class="image-container">
-        <div class="image-wrapper">
-            <img src="./resume-images/xray/191756980248_.pic_hd.jpg" alt="图片8">
-            <img src="./resume-images/xray/201756980319_.pic_hd.jpg" alt="图片9">
-            <img src="./resume-images/xray/211756980354_.pic_hd.jpg" alt="图片10">
-            <img src="./resume-images/xray/44336c6b31583948248d0c0c98e221c1.PNG" alt="图片11">
-            <img src="./resume-images/xray/231756980483_.pic_hd.jpg" alt="图片12">
-            <img src="./resume-images/xray/241756980598_.pic.jpg" alt="图片13">
-            <img src="./resume-images/xray/b832fda83dd73adac3e48f66f7e649ed.PNG" alt="图片14">
-            <img src="./resume-images/xray/251756980599_.pic.jpg" alt="图片15">
-        </div>
-        <h2 class="image-title">安检机软件
-        </h2>
-        <p class="image-description">
-            x光安检机系统配套软件，包括：<br>
-            系统设置模块，显示和设置一些系统参数<br>
-            维护诊断模块，设备各硬件组件的状态检测显示控制<br>
-            TIP模块，图像管理，培训计划管理，执行离线培训和在线考核逻辑流程，数据记录统计等，对操作人员进行考核<br>
-            其他模块，包括用户管理、人员换班等。
-        </p>
-    </div>
-    <div class="image-container">
-        <div class="image-wrapper">
-        </div>
-        <h2 class="image-title">...</h2>
-        <p class="image-description">
-            另有一些其他项目由于之前没有截图和我更换了电脑没有上传<br>
-        </p>
-    </div>
+    <!-- =========================
+         Navigation
+    ========================== -->
 
-</body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="#vehicle">车载软件</a>
+        <a href="#mac-ui">仿 macOS UI</a>
+        <a href="#ems">EMS 测试平台</a>
+        <a href="#pcs-test">PCS 测试</a>
+        <a href="#pcs-production">PCS 出厂测试</a>
+        <a href="#mini-program">产品信息</a>
+        <a href="#xray">安检机</a>
+        <a href="#traceability">生产追溯</a>
+        <a href="#body-camera">记录仪平台</a>
+      </div>
+    </nav>
 
+    <main>
+      <div class="section-header">
+        <h2>项目经历</h2>
+        <p>部分近期参与或独立开发的软件项目。</p>
+      </div>
+
+      <!-- =========================
+           1. 车载软件
+      ========================== -->
+
+      <article class="project" id="vehicle">
+        <div class="project-images single-image">
+          <img src="./resume-images/IMG_5087.JPG" alt="车载软件界面" />
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">车载软件</h3>
+
+          <p class="project-description">
+            运行于 Linux 平台的车载综合软件系统，实现多路图像显示、
+            系统控制、设备状态显示以及目标检测等功能。
+          </p>
+
+          <div class="tags">
+            <span class="tag">Linux</span>
+            <span class="tag">C++</span>
+            <span class="tag">Qt</span>
+            <span class="tag">QML</span>
+            <span class="tag">多路视频</span>
+            <span class="tag">目标检测</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================
+           2. 仿 macOS
+      ========================== -->
+
+      <article class="project" id="mac-ui">
+        <div class="project-images single-image">
+          <img
+            src="./resume-images/243afe8afc88cf244ad357e0d24487c6.PNG"
+            alt="仿 macOS UI"
+          />
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">Windows 仿 macOS UI</h3>
+
+          <p class="project-description">
+            基于 Windows 平台开发的仿 macOS 风格桌面界面， 用于公司后续项目的 UI
+            框架和交互方案验证。
+          </p>
+
+          <div class="tags">
+            <span class="tag">Windows</span>
+            <span class="tag">Qt</span>
+            <span class="tag">QML</span>
+            <span class="tag">UI Framework</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================
+           3. EMS
+      ========================== -->
+
+      <article class="project" id="ems">
+        <div class="project-images single-image">
+          <img
+            src="./resume-images/5d20eabdb46331e628e5d72bcb078fc3.PNG"
+            alt="EMS 测试软件"
+          />
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">PCS 测试 EMS 上位机</h3>
+
+          <p class="project-description">
+            用于 PCS 产品数据通信测试的 EMS 模拟系统， 通过 Modbus 与 PCS
+            设备进行通信，模拟 EMS 系统进行数据交互和功能验证。
+          </p>
+
+          <div class="tags">
+            <span class="tag">C++</span>
+            <span class="tag">Qt</span>
+            <span class="tag">QML</span>
+            <span class="tag">Modbus</span>
+            <span class="tag">PCS</span>
+            <span class="tag">EMS</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================
+           4. PCS 测试
+      ========================== -->
+
+      <article class="project" id="pcs-test">
+        <div class="project-images single-image">
+          <img
+            src="./resume-images/e9ca34f519a020c73e7e7f0e096db45f.PNG"
+            alt="PCS 稳定性测试软件"
+          />
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">PCS 稳定性测试软件</h3>
+
+          <p class="project-description">
+            用于 PCS 产品稳定性测试，实现多路电压、电流实时曲线显示，
+            测试流程控制、设备状态监控以及测试参数计算等功能。
+          </p>
+
+          <div class="tags">
+            <span class="tag">Qt</span>
+            <span class="tag">QML</span>
+            <span class="tag">数据可视化</span>
+            <span class="tag">测试流程</span>
+            <span class="tag">PCS</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================
+           5. PCS 出厂测试
+      ========================== -->
+
+      <article class="project" id="pcs-production">
+        <div class="project-images single-image">
+          <img src="./resume-images/ppp.png" alt="PCS 出厂测试软件" />
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">PCS 出厂测试软件</h3>
+
+          <p class="project-description">
+            用于 PCS
+            产品出厂测试，实现测试流程控制、测试结果记录以及测试报告生成。
+          </p>
+
+          <p class="project-description">
+            截图为开发过程中的版本，非最终版本。
+          </p>
+
+          <div class="tags">
+            <span class="tag">Qt</span>
+            <span class="tag">QML</span>
+            <span class="tag">HTML</span>
+            <span class="tag">自动化测试</span>
+            <span class="tag">测试报告</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================
+           6. 小程序
+      ========================== -->
+
+      <article class="project" id="mini-program">
+        <div class="project-images single-image">
+          <img src="./resume-images/Group 1.png" alt="PCS 产品信息小程序" />
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">PCS 产品信息小程序</h3>
+
+          <p class="project-description">
+            用于 PCS 产品信息查询和追溯，通过二维码快速查询产品相关信息，
+            并支持二维码生成等功能。
+          </p>
+
+          <div class="tags">
+            <span class="tag">小程序</span>
+            <span class="tag">二维码</span>
+            <span class="tag">产品追溯</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================
+           7. X-Ray
+      ========================== -->
+
+      <article class="project" id="xray">
+        <div class="project-images">
+          <div class="xray-grid">
+            <img
+              src="./resume-images/xray/191756980248_.pic_hd.jpg"
+              alt="安检机软件界面 1"
+            />
+
+            <img
+              src="./resume-images/xray/201756980319_.pic_hd.jpg"
+              alt="安检机软件界面 2"
+            />
+
+            <img
+              src="./resume-images/xray/211756980354_.pic_hd.jpg"
+              alt="安检机软件界面 3"
+            />
+
+            <img
+              src="./resume-images/xray/44336c6b31583948248d0c0c98e221c1.PNG"
+              alt="安检机软件界面 4"
+            />
+
+            <img
+              src="./resume-images/xray/231756980483_.pic_hd.jpg"
+              alt="安检机软件界面 5"
+            />
+
+            <img
+              src="./resume-images/xray/241756980598_.pic.jpg"
+              alt="安检机软件界面 6"
+            />
+
+            <img
+              src="./resume-images/xray/b832fda83dd73adac3e48f66f7e649ed.PNG"
+              alt="安检机软件界面 7"
+            />
+
+            <img
+              src="./resume-images/xray/251756980599_.pic.jpg"
+              alt="安检机软件界面 8"
+            />
+          </div>
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">X-Ray 安检机软件</h3>
+
+          <p class="project-description">
+            X 光安检机系统配套软件，负责设备控制、系统配置、
+            硬件状态监测、图像管理以及操作人员培训考核等功能。
+          </p>
+
+          <p class="project-description">主要功能包括：</p>
+
+          <div class="highlight">
+            <strong>系统设置</strong>：系统参数配置与管理<br />
+            <strong>维护诊断</strong>：设备硬件组件状态检测、诊断与控制<br />
+            <strong>TIP 模块</strong>：X
+            光图像管理、培训计划、离线培训、在线考核、 数据记录与统计<br />
+            <strong>其他功能</strong>：用户管理、人员换班等
+          </div>
+
+          <div class="tags">
+            <span class="tag">C++</span>
+            <span class="tag">Qt</span>
+            <span class="tag">QML</span>
+            <span class="tag">X-Ray</span>
+            <span class="tag">设备控制</span>
+            <span class="tag">图像管理</span>
+            <span class="tag">培训系统</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================
+           8. 生产追溯
+      ========================== -->
+
+      <article class="project" id="traceability">
+        <div class="project-images">
+          <div class="image-grid">
+            <img
+              src="./resume-images/sys-manage/sys-manage.png"
+              alt="生产追溯平台 1"
+            />
+
+            <img
+              src="./resume-images/sys-manage/sys-manage2.png"
+              alt="生产追溯平台 2"
+            />
+          </div>
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">电池生产追溯平台</h3>
+
+          <p class="project-description">
+            面向电池生产过程的生产管理与产品追溯平台，
+            覆盖生产任务、物料、人员、权限、产品码关联、
+            生产装配记录、检测设备数据以及产品追溯查询等功能。
+          </p>
+
+          <p class="project-description">
+            检测设备、测试设备及扫码枪通过 TCP、 串口等方式接入系统，并通过
+            WebSocket 转发至后端。
+          </p>
+
+          <div class="tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">shadcn/ui</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Docker</span>
+            <span class="tag">WebSocket</span>
+            <span class="tag">TCP</span>
+            <span class="tag">串口通信</span>
+            <span class="tag">生产追溯</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================
+           9. 手持记录仪
+      ========================== -->
+
+      <article class="project" id="body-camera">
+        <div class="project-images">
+          <div class="image-grid">
+            <img
+              src="./resume-images/cam/cam-1.png"
+              alt="手持记录仪管理平台 1"
+            />
+
+            <img
+              src="./resume-images/cam/cam-2.png"
+              alt="手持记录仪管理平台 2"
+            />
+          </div>
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">手持记录仪监视管理平台</h3>
+
+          <p class="project-description">
+            面向手持记录仪设备的监视与管理平台， 实现 GB28181
+            设备接入、设备位置管理、多路实时视频监控、
+            视频录制以及组织、人员、设备管理等功能。
+          </p>
+
+          <p class="project-description">
+            音视频部分基于 ZLMediaKit 构建流媒体能力，
+            后端负责设备接入、信令控制、设备状态及业务逻辑，
+            前端提供地图、设备树和实时视频监控界面。
+          </p>
+
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">shadcn/ui</span>
+            <span class="tag">Go</span>
+            <span class="tag">Gin</span>
+            <span class="tag">GB28181</span>
+            <span class="tag">ZLMediaKit</span>
+            <span class="tag">WebRTC</span>
+            <span class="tag">实时视频</span>
+            <span class="tag">地图</span>
+            <span class="tag">设备管理</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================
+           Other
+      ========================== -->
+
+      <article class="project">
+        <div class="project-content">
+          <h3 class="project-title">其他项目</h3>
+
+          <p class="project-description">
+            另有部分历史项目由于更换电脑、缺少截图等原因， 暂未在本页面展示。
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer>项目作品集 · Software Development Portfolio</footer>
+  </body>
 </html>
